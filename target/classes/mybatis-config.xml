@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--引入 database.properties-->
+    <properties resource="database.properties"/>
+
+    <!--配置mybatis的log 实现为LOG4J-->
+    <settings>
+        <setting name="logImpl" value="LOG4J"/>
+        <setting name="autoMappingBehavior" value="FULL"/>
+    </settings>
+
+    <typeAliases>
+        <!--为单个类起别名-->
+        <!--<typeAlias type="cn.smbms.pojo.User" alias="user"/>-->
+        <!--扫描包的方式-->
+        <package name="cn.smbms.pojo"/>
+    </typeAliases>
+    <!--配置环境-->
+    <environments default="test">
+        <environment id="test">
+            <!--配置事物管理，采用JDBC的事物管理-->
+            <transactionManager type="JDBC"></transactionManager>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${user}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!--将 mapper 文件加入到配置文件中-->
+    <mappers>
+        <package name="cn.smbms.mapper"/>
+    </mappers>
+</configuration>
