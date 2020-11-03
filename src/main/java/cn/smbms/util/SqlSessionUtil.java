@@ -31,6 +31,7 @@ public class SqlSessionUtil {
      * @param session
      */
     public static void closeSqlSession(SqlSession session){
+
         if (session!=null)session.close();
     }
 
